@@ -34,8 +34,7 @@ async def draw(prompt) -> str:
 
 # code stolen from https://realpython.com/generate-images-with-dalle-openai-api/
 async def convert(path):
-    DATA_DIR = Path.cwd() / "responses"
-    JSON_FILE = DATA_DIR / path
+    JSON_FILE = Path(path)
     IMAGE_DIR = Path.cwd() / "images"
     IMAGE_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -50,6 +49,6 @@ async def convert(path):
             png.write(image_data)
 
         # delete uneeded json file
-        os.remove(path)
+        os.remove(JSON_FILE)
 
     return image_file
